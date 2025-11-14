@@ -1,6 +1,0 @@
-CREATE TABLE Students (
-    id INT PRIMARY KEY,
-    name VARCHAR(50),
-    branch VARCHAR(20),
-    cgpa DECIMAL(3,2)
-);

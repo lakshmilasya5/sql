@@ -1,0 +1,27 @@
+CREATE TABLE Students (
+    id INT PRIMARY KEY,
+    name VARCHAR(50),
+    branch VARCHAR(20),
+    cgpa DECIMAL(3,2)
+);
+
+INSERT INTO Students VALUES
+(1, 'Lasya', 'CSE', 7.80),
+(2, 'Anil', 'ECE', 8.20),
+(3, 'Divya', 'IT', 9.10);
+
+SELECT * FROM Students;
+
+SELECT name, cgpa FROM Students WHERE cgpa > 8;
+
+UPDATE Students SET cgpa = 8.50 WHERE id = 1;
+
+SELECT * FROM Students ORDER BY cgpa DESC;
+
+SELECT branch, AVG(cgpa) AS avg_cgpa
+FROM Students
+GROUP BY branch;
+
+SELECT s.name, m.total_marks
+FROM Students s
+JOIN Marks m ON s.id = m.student_id;
