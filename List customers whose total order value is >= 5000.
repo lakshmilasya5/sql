@@ -1,0 +1,5 @@
+SELECT c.cust_id, c.name, SUM(o.amount) AS total_amount
+FROM Customers c
+JOIN Orders o ON c.cust_id = o.cust_id
+GROUP BY c.cust_id, c.name
+HAVING SUM(o.amount) >= 5000;
