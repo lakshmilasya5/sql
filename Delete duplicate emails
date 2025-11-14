@@ -1,0 +1,5 @@
+DELETE u
+FROM Users u
+JOIN Users u2
+  ON u.email = u2.email
+ AND u.user_id > u2.user_id;
