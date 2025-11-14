@@ -1,0 +1,8 @@
+SELECT emp_id, name, department, salary
+FROM (
+    SELECT e.*,
+           ROW_NUMBER() OVER (PARTITION BY department ORDER BY salary DESC) AS rn
+    FROM Employees e
+) t
+WHERE rn <= 2
+ORDER BY department, salary DESC;
