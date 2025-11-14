@@ -1,0 +1,8 @@
+WITH dept_avg AS (
+    SELECT department, AVG(salary) AS avg_sal
+    FROM Employees
+    GROUP BY department
+)
+SELECT department, avg_sal
+FROM dept_avg
+WHERE avg_sal = (SELECT MAX(avg_sal) FROM dept_avg);
