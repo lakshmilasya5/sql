@@ -1,0 +1,17 @@
+WITH numbered AS (
+    SELECT emp_id, att_date,
+           ROW_NUMBER() OVER (PARTITION BY emp_id ORDER BY att_date) AS rn
+    FROM Attendance
+),
+grp AS (
+    SELECT emp_id, att_date,
+           DATE_SUB(att_date, INTERVAL rn DAY) AS grp_key
+    FROM numbered
+)
+SELECT emp_id,
+       MIN(att_date) AS start_date,
+       MAX(att_date) AS end_date,
+       DATEDIFF(MAX(att_date), MIN(att_date)) + 1 AS streak_length
+FROM grp
+GROUP BY emp_id, grp_key
+ORDER BY emp_id, streak_length DESC;
